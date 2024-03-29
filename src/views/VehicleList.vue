@@ -6,13 +6,21 @@ import ConfirmDialog from 'primevue/confirmdialog';
 import { useConfirm } from 'primevue/useconfirm';
 
 import { type Vehicle, db } from '@/db/db';
+import { useDatabaseStore } from '@/stores/database';
 
+const store = useDatabaseStore();
 const confirm = useConfirm();
 const list = ref<Vehicle[]>([]);
 
 onMounted(async () => {
-  list.value = await db.vehicles.toArray();
+  await fetchVehicleList();
 });
+
+const fetchVehicleList = async () => {
+  list.value = await db.vehicles.toArray();
+
+  if (list.value.length === 0) store.setEmpty(true);
+};
 
 const confirmRemove = (vehicle: Vehicle) => {
   confirm.require({
@@ -23,7 +31,7 @@ const confirmRemove = (vehicle: Vehicle) => {
     acceptLabel: 'Remove',
     accept: async () => {
       await db.vehicles.delete(vehicle.id);
-      list.value = await db.vehicles.toArray();
+      await fetchVehicleList();
     },
     reject: () => {},
   });
@@ -64,10 +72,14 @@ const confirmRemove = (vehicle: Vehicle) => {
                 </div>
 
                 <div class="flex flex-row md:flex-row gap-2">
-                  <RouterLink :to="`/history/${item.id}`">
+                  <RouterLink
+                    :to="{ name: 'history', params: { carId: item.id } }"
+                  >
                     <Button icon="pi pi-history" outlined></Button>
                   </RouterLink>
-                  <RouterLink :to="`/edit/${item.id}`">
+                  <RouterLink
+                    :to="{ name: 'edit', params: { carId: item.id } }"
+                  >
                     <Button icon="pi pi-file-edit" outlined></Button>
                   </RouterLink>
                   <Button

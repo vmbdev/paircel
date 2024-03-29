@@ -30,3 +30,14 @@ coverage
 *.tsbuildinfo
 
 .vscode
+
+# Boring way to keep AndroidManifest.xml and build.gradle
+/android/*
+!/android/app
+/android/app/*
+!/android/app/src
+/android/app/src/*
+!/android/app/src/main
+/android/app/src/main/*
+!/android/app/src/main/AndroidManifest.xml
+!/android/app/build.gradle

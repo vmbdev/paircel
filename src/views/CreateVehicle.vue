@@ -11,19 +11,22 @@ import InputGroupAddon from 'primevue/inputgroupaddon';
 import ColorPicker from 'primevue/colorpicker';
 
 import { db } from '@/db/db';
+import { useDatabaseStore } from '@/stores/database';
 
+const store = useDatabaseStore();
 const router = useRouter();
 const name = ref<string>('');
 const color = ref<string>('000000');
 
-const submit = () => {
+const submit = async () => {
   if (name.value && color.value) {
-    db.vehicles.put({
+    await db.vehicles.put({
       name: name.value,
       color: color.value,
     });
 
-    router.push('/');
+    router.push({ name: 'list' });
+    store.setEmpty(false);
   }
 };
 </script>
