@@ -32,7 +32,7 @@ const confirmRemove = (vehicle: Vehicle) => {
 
 <template>
   <ConfirmDialog></ConfirmDialog>
-  <DataView :value="list">
+  <DataView :value="list" dataKey="id">
     <template #list="slotProps">
       <div class="grid grid-nogutter">
         <div
