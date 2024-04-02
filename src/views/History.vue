@@ -14,6 +14,7 @@ import { db, type ParkLocation } from '@/db/db';
 const route = useRoute();
 const confirm = useConfirm();
 const history = ref<ParkLocation[]>();
+const dbChecked = ref<boolean>(false);
 
 onMounted(async () => {
   await refresh();
@@ -29,6 +30,7 @@ const refresh = async (newId?: number) => {
   const vId = newId ?? +route.params.vehicleId;
 
   history.value = await db.getHistoryWithVehicles(vId ?? undefined);
+  dbChecked.value = true;
 };
 
 const getTimeDistance = (date: Date) => {
@@ -69,24 +71,45 @@ const remove = (id: number) => {
     </template>
   </ConfirmDialog>
 
-  <Timeline align="left" :value="history" class="w-full md:w-20rem">
+  <Timeline
+    v-if="history && history.length > 0"
+    align="left"
+    :value="history"
+    class="w-full md:w-20rem"
+  >
     <template #marker="slotProps">
       <SVGColorSquare :size="20" :color="slotProps.item.vehicle.color" />
     </template>
     <template #content="slotProps">
       <div class="flex flex-row align-items-center">
-        <Card class="m-1 mr-3 flex-1" :pt="{ body: { class: ['p-3'] } }">
-          <template #title>
-            {{ slotProps.item.vehicle.name }}
-          </template>
-          <template #subtitle>
-            Parked {{ getTimeDistance(slotProps.item.date) }}
-          </template>
-        </Card>
+        <RouterLink
+          class="m-1 mr-3 flex-1 no-underline block"
+          :to="{
+            name: 'navigation',
+            query: {
+              lat: slotProps.item.lat,
+              lng: slotProps.item.lon,
+            },
+          }"
+        >
+          <Card :pt="{ body: { class: ['p-3'] } }">
+            <template #title>
+              {{ slotProps.item.vehicle.name }}
+            </template>
+            <template #subtitle>
+              Parked {{ getTimeDistance(slotProps.item.date) }}
+            </template>
+          </Card>
+        </RouterLink>
         <Button icon="pi pi-trash" @click="remove(slotProps.item.id)" />
       </div>
     </template>
   </Timeline>
+  <div v-else-if="dbChecked">
+    <div class="flex flex-column align-items-center gap-2">
+      <strong>No records of any parking yet.</strong>
+    </div>
+  </div>
 </template>
 
 <style>

@@ -7,6 +7,10 @@ import { useMapsStore } from '@/stores/maps';
 import { type PaircelPosition } from '@/types/paircel-position';
 import { GMAPS_API_KEY } from '@/config';
 
+const props = defineProps<{
+  viewMode?: boolean;
+  coords?: PaircelPosition;
+}>();
 const emit = defineEmits<{
   change: [position: PaircelPosition];
 }>();
@@ -22,25 +26,38 @@ let positionWatcher: string;
 let positionWatcherCount: number = 0;
 
 watch(currentCoords, async () => {
-  currentMarker.value = await setMarker(
-    currentCoords.value.lat,
-    currentCoords.value.lng,
-  );
+  if (!props.viewMode) {
+    currentMarker.value = await setMarker(
+      currentCoords.value.lat,
+      currentCoords.value.lng,
+    );
 
-  emit('change', currentCoords.value);
+    emit('change', currentCoords.value);
+  }
 });
 
 onMounted(async () => {
   mapsStore.enable();
   await createMap();
   await map.enableCurrentLocation(true);
-  await map.setOnMapClickListener(async (data) => {
-    if (positionWatcher) {
-      await Geolocation.clearWatch({ id: positionWatcher });
-    }
 
-    currentCoords.value = { lat: data.latitude, lng: data.longitude };
-  });
+  if (!props.viewMode) {
+    await map.setOnMapClickListener(async (data) => {
+      if (positionWatcher) {
+        await Geolocation.clearWatch({ id: positionWatcher });
+      }
+
+      currentCoords.value = { lat: data.latitude, lng: data.longitude };
+    });
+  } else if (props.coords) {
+    await Promise.all([
+      setMarker(props.coords.lat, props.coords.lng),
+      map.setCamera({
+        coordinate: { lat: props.coords.lat, lng: props.coords.lng },
+        animate: true,
+      }),
+    ]);
+  }
 
   positionWatcher = await Geolocation.watchPosition(
     { enableHighAccuracy: true },
@@ -81,10 +98,13 @@ const updatePosition = async (position: Position | null) => {
   const coords = position.coords;
 
   if (coords) {
-    map.setCamera({
-      coordinate: { lat: coords.latitude, lng: coords.longitude },
-      animate: true,
-    });
+    if (!props.viewMode) {
+      await map.setCamera({
+        coordinate: { lat: coords.latitude, lng: coords.longitude },
+        animate: true,
+      });
+    }
+
     currentCoords.value = { lat: coords.latitude, lng: coords.longitude };
 
     if (positionWatcherCount === 3) {
@@ -107,5 +127,12 @@ const setMarker = async (lat: number, lng: number): Promise<string | null> => {
 </script>
 
 <template>
-  <capacitor-google-map ref="mapRef" class="relative block h-25rem" />
+  <capacitor-google-map
+    ref="mapRef"
+    class="relative block"
+    :class="{
+      'h-25rem': !props.viewMode,
+    }"
+    :style="{ height: '80vh' }"
+  />
 </template>

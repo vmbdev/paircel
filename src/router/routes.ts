@@ -38,6 +38,17 @@ const router = createRouter({
       name: 'park',
       component: () => import('../views/Park.vue'),
     },
+    {
+      path: '/navigation',
+      name: 'navigation',
+      component: () => import('../views/MapNavigation.vue'),
+      props: (route) => ({
+        coords: {
+          lat: route.query.lat ? +route.query.lat : null,
+          lng: route.query.lng ? +route.query.lng : null,
+        },
+      }),
+    },
   ],
 });
 

@@ -21,23 +21,30 @@ const mapsStore = useMapsStore();
 <template>
   <FirstStart v-if="databaseStore.empty && route.path === '/'" />
 
-  <template v-else>
-    <div class="main-container p-2" :class="{ transparent: mapsStore.enabled }">
+  <!-- background transparent when gmaps is active, necessary on Android -->
+  <div
+    v-else
+    class="main-container flex flex-column"
+    :class="{ transparent: mapsStore.enabled }"
+  >
+    <main role="main" class="main-content p-2">
+      <RouterView />
+    </main>
+    <footer>
       <MainToolbar />
-      <div class="m-3">
-        <RouterView />
-      </div>
-    </div>
-  </template>
+    </footer>
+  </div>
   <Toast position="bottom-center" />
 </template>
 
 <style>
 .main-container {
-  min-height: 100vh;
   background-color: white;
 }
-
+.main-content {
+  height: 88vh;
+  overflow-y: scroll;
+}
 .transparent {
   background-color: transparent !important;
 }

@@ -34,6 +34,7 @@ const confirmRemove = (vehicle: Vehicle) => {
     acceptLabel: 'Remove',
     accept: async () => {
       await db.vehicles.delete(vehicle.id);
+      await db.history.where({ vehicleId: vehicle.id }).delete();
       await fetchVehicleList();
     },
     reject: () => {},
@@ -43,7 +44,7 @@ const confirmRemove = (vehicle: Vehicle) => {
 
 <template>
   <ConfirmDialog></ConfirmDialog>
-  <Card>
+  <Card class="mb-2">
     <template #title>
       <h1>Vehicle list</h1>
     </template>
@@ -53,7 +54,7 @@ const confirmRemove = (vehicle: Vehicle) => {
   </Card>
   <DataView :value="list" dataKey="id">
     <template #list="slotProps">
-      <ul class="grid grid-nogutter p-0 m-0">
+      <ul class="grid grid-nogutter p-0 m-0 list-none">
         <li
           v-for="(item, index) in slotProps.items"
           :key="item.id"
@@ -93,6 +94,14 @@ const confirmRemove = (vehicle: Vehicle) => {
           </div>
         </li>
       </ul>
+    </template>
+    <template #empty>
+      <div class="flex flex-column align-items-center gap-2">
+        <strong>No vehicles where found.</strong>
+        <RouterLink to="/create">
+          <Button label="Add vehicle" icon="pi pi-car" iconPos="right" />
+        </RouterLink>
+      </div>
     </template>
   </DataView>
 </template>
