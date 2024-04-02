@@ -2,9 +2,12 @@
 import { onMounted, ref } from 'vue';
 import DataView from 'primevue/dataview';
 import Button from 'primevue/button';
+import Card from 'primevue/card';
+import Chip from 'primevue/chip';
 import ConfirmDialog from 'primevue/confirmdialog';
 import { useConfirm } from 'primevue/useconfirm';
 
+import SVGColorSquare from '@/components/SVGColorSquare.vue';
 import { type Vehicle, db } from '@/db/db';
 import { useDatabaseStore } from '@/stores/database';
 
@@ -40,59 +43,56 @@ const confirmRemove = (vehicle: Vehicle) => {
 
 <template>
   <ConfirmDialog></ConfirmDialog>
+  <Card>
+    <template #title>
+      <h1>Vehicle list</h1>
+    </template>
+    <template #subtitle>
+      Click on your vehicle to see its parking history.
+    </template>
+  </Card>
   <DataView :value="list" dataKey="id">
     <template #list="slotProps">
-      <div class="grid grid-nogutter">
-        <div
+      <ul class="grid grid-nogutter p-0 m-0">
+        <li
           v-for="(item, index) in slotProps.items"
           :key="item.id"
-          class="col-12"
+          class="col-12 flex flex-column sm:align-items-center p-4"
+          :class="{ 'border-top-1 surface-border': index !== 0 }"
         >
           <div
-            class="flex flex-column sm:flex-row sm:align-items-center p-4 gap-3"
-            :class="{ 'border-top-1 surface-border': index !== 0 }"
+            class="flex flex-row justify-content-between align-items-start gap-2 md:w-6"
           >
-            <div
-              class="flex flex-column justify-content-between md:align-items-center flex-1 gap-4"
-            >
-              <div
-                class="flex flex-row justify-content-between align-items-start gap-2"
+            <div class="flex-1 flex flex-row gap-2">
+              <RouterLink
+                :to="{ name: 'history', params: { vehicleId: item.id } }"
               >
-                <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">
-                  <rect
-                    width="40"
-                    height="40"
-                    rx="5"
-                    ry="5"
-                    :fill="`#${item.color}`"
-                  />
-                </svg>
-                <div class="text-lg font-medium text-900 mt-2 flex-1">
-                  {{ item.name }}
-                </div>
+                <Chip class="py-0 pl-0 pr-3">
+                  <span
+                    class="w-2rem h-2rem flex align-items-center justify-content-center"
+                  >
+                    <SVGColorSquare :size="30" :color="item.color" />
+                  </span>
+                  <span class="ml-2 font-medium">{{ item.name }}</span>
+                </Chip>
+              </RouterLink>
+            </div>
 
-                <div class="flex flex-row md:flex-row gap-2">
-                  <RouterLink
-                    :to="{ name: 'history', params: { carId: item.id } }"
-                  >
-                    <Button icon="pi pi-history" outlined></Button>
-                  </RouterLink>
-                  <RouterLink
-                    :to="{ name: 'edit', params: { carId: item.id } }"
-                  >
-                    <Button icon="pi pi-file-edit" outlined></Button>
-                  </RouterLink>
-                  <Button
-                    icon="pi pi-trash"
-                    outlined
-                    @click="confirmRemove(item)"
-                  ></Button>
-                </div>
-              </div>
+            <div class="flex flex-row md:flex-row gap-2">
+              <RouterLink
+                :to="{ name: 'edit', params: { vehicleId: item.id } }"
+              >
+                <Button icon="pi pi-file-edit" severity="info"></Button>
+              </RouterLink>
+              <Button
+                icon="pi pi-trash"
+                severity="danger"
+                @click="confirmRemove(item)"
+              ></Button>
             </div>
           </div>
-        </div>
-      </div>
+        </li>
+      </ul>
     </template>
   </DataView>
 </template>

@@ -19,12 +19,12 @@ const router = createRouter({
       component: () => import('../views/CreateVehicle.vue'),
     },
     {
-      path: '/history/:carId?',
+      path: '/history/:vehicleId?',
       name: 'history',
       component: () => import('../views/History.vue'),
     },
     {
-      path: '/edit/:carId',
+      path: '/edit/:vehicleId',
       name: 'edit',
       component: () => import('../views/EditVehicle.vue'),
     },

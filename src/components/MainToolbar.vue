@@ -5,32 +5,30 @@ import Button from 'primevue/button';
 
 <template>
   <Toolbar>
-    <template #start>
-      <div class="flex align-items-center gap-2">
+    <template #center>
+      <div class="flex align-items-center gap-2 w-full justify-content-evenly">
         <RouterLink to="/create">
-          <Button label="New" text plain />
+          <Button icon="pi pi-plus" severity="secondary" />
         </RouterLink>
 
         <RouterLink :to="{ name: 'history' }">
-          <Button label="History" text plain />
+          <Button icon="pi pi-history" severity="secondary" />
         </RouterLink>
-      </div>
-    </template>
 
-    <template #center>
-      <RouterLink :to="{ name: 'park' }">
-        <Button icon="pi pi-map-marker" class="mr-2" severity="primary" />
-      </RouterLink>
-    </template>
+        <RouterLink :to="{ name: 'park' }">
+          <Button
+            icon="pi pi-map-marker"
+            class="m-2 w-3rem h-3rem"
+            severity="primary"
+          />
+        </RouterLink>
 
-    <template #end>
-      <div class="flex align-items-center gap-2">
         <RouterLink :to="{ name: 'list' }">
-          <Button label="List" text plain />
+          <Button icon="pi pi-car" severity="secondary" />
         </RouterLink>
 
         <RouterLink :to="{ name: 'about' }">
-          <Button label="About" text plain />
+          <Button icon="pi pi-question" severity="secondary" />
         </RouterLink>
       </div>
     </template>

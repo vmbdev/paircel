@@ -1,20 +1,91 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import { Geolocation, type Position } from '@capacitor/geolocation';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import Button from 'primevue/button';
+import ConfirmDialog from 'primevue/confirmdialog';
+import Panel from 'primevue/panel';
+import { useConfirm } from 'primevue/useconfirm';
+import { useToast } from 'primevue/usetoast';
 
-const position = ref<Position | null>(null);
+import ParkingSelectorMap from '@/components/ParkingSelectorMap.vue';
+import VehicleSelector from '@/components/VehicleSelector.vue';
+import { type PaircelPosition } from '@/types/paircel-position';
+import { db, type Vehicle } from '@/db/db';
 
-const getPosition = (newPosition: Position | null) => {
+const confirm = useConfirm();
+const toast = useToast();
+const router = useRouter();
+const selectedVehicle = ref<Vehicle>();
+const position = ref<PaircelPosition>();
+
+const positionChanged = (newPosition: PaircelPosition) => {
   position.value = newPosition;
 };
 
-onMounted(async () => {
-  await Geolocation.watchPosition({}, getPosition);
-});
+const vehicleChanged = (vehicle: Vehicle) => {
+  selectedVehicle.value = vehicle;
+};
+
+const savePosition = async () => {
+  confirm.require({
+    group: 'carparking',
+    header: 'Park here',
+    message: 'Do you want to park in the selected spot?',
+    icon: 'pi pi-question-circle',
+    acceptIcon: 'pi pi-check',
+    rejectIcon: 'pi pi-times',
+    rejectClass: 'p-button-outlined p-button-sm',
+    acceptClass: 'p-button-sm',
+    rejectLabel: 'Cancel',
+    acceptLabel: 'Park',
+    accept: async () => {
+      if (position.value && selectedVehicle.value?.id) {
+        await db.history.put({
+          vehicleId: selectedVehicle.value.id,
+          date: new Date(),
+          lon: position.value.lng,
+          lat: position.value.lat,
+        });
+        toast.add({
+          severity: 'info',
+          summary: `${selectedVehicle.value.name} just parked!`,
+          life: 5000,
+        });
+
+        router.push({ name: 'history' });
+      }
+    },
+  });
+};
 </script>
 
 <template>
-  <p>acc: {{ position?.coords.accuracy }}</p>
-  <p>lat: {{ position?.coords.latitude }}</p>
-  <p>lon: {{ position?.coords.longitude }}</p>
+  <ConfirmDialog group="carparking">
+    <template #message="slotProps">
+      <div
+        class="flex flex-row align-items-center w-full gap-3 border-bottom-1 surface-border"
+      >
+        <i
+          :class="slotProps.message.icon"
+          class="text-6xl text-primary-500"
+        ></i>
+        <p>{{ slotProps.message.message }}</p>
+      </div>
+    </template>
+  </ConfirmDialog>
+
+  <Panel class="mb-2" header="Select your vehicle and position">
+    <VehicleSelector @update="vehicleChanged" />
+  </Panel>
+  <ParkingSelectorMap @change="positionChanged" />
+  <div class="relative flex flex-column w-full align-items-center gap-3 m-2">
+    <Button
+      icon="pi pi-map-marker"
+      class="w-6 h-3rem"
+      label="Park"
+      severity="warning"
+      @click="savePosition()"
+      :disabled="!position || !selectedVehicle"
+    />
+  </div>
 </template>

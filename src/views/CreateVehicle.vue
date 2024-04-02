@@ -33,24 +33,37 @@ const submit = async () => {
 
 <template>
   <Card>
-    <template #title>Add a new vehicle</template>
+    <template #title><h1>Add a new vehicle</h1></template>
+    <template #subtitle>
+      Doesn't matter if its a car, a motorcycle, a truck or whatever. If it can
+      be parked, it can be forgotten where.
+    </template>
     <template #content>
-      <h4>Name</h4>
+      <h2>Name</h2>
+      <p id="name-help">
+        The brand, or the model, or just how you usually call it.
+      </p>
       <IconField iconPosition="left">
         <InputIcon class="pi pi-align-justify"></InputIcon>
         <InputText
+          class="w-full"
           v-model="name"
           placeholder="Name"
           aria-describedby="name-help"
         />
       </IconField>
-      <small id="name-help"
-        >The brand, or the model, or just how you usually call it.</small
-      >
 
-      <h4>Color</h4>
+      <h2>Color</h2>
+      <p id="color-help">
+        Can be the color of the car or just a color you like to differentiate it
+        from the others.
+      </p>
       <InputGroup>
-        <InputText placeholder="Color" v-model="color" />
+        <InputText
+          v-model="color"
+          aria-describedby="color-help"
+          placeholder="Color"
+        />
         <InputGroupAddon>
           <ColorPicker
             v-model="color"
@@ -61,7 +74,7 @@ const submit = async () => {
     </template>
 
     <template #footer>
-      <div class="flex gap-3 mt-1">
+      <div class="flex gap-3 mt-1 justify-content-center">
         <Button label="Create" @click="submit()" />
       </div>
     </template>
