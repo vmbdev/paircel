@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watchEffect } from 'vue';
+import { ref, watchEffect } from 'vue';
 import { useRouter } from 'vue-router';
 import Card from 'primevue/card';
 import Button from 'primevue/button';
@@ -55,30 +55,29 @@ const submit = async () => {
       <slot name="subtitle" />
     </template>
     <template #content>
-      <h2>Name</h2>
+      <h2>{{ $t('add-edit-vehicle.name') }}</h2>
       <p id="name-help">
-        The brand, or the model, or just how you usually call it.
+        {{ $t('add-edit-vehicle.name-help') }}
       </p>
       <IconField iconPosition="left">
         <InputIcon class="pi pi-align-justify"></InputIcon>
         <InputText
           class="w-full"
           v-model="name"
-          placeholder="Name"
+          :placeholder="$t('add-edit-vehicle.name')"
           aria-describedby="name-help"
         />
       </IconField>
 
-      <h2>Color</h2>
+      <h2>{{ $t('add-edit-vehicle.color') }}</h2>
       <p id="color-help">
-        Can be the color of the car or just a color you like to differentiate it
-        from the others.
+        {{ $t('add-edit-vehicle.color-help') }}
       </p>
       <InputGroup>
         <InputText
           v-model="color"
           aria-describedby="color-help"
-          placeholder="Color"
+          :placeholder="$t('add-edit-vehicle.color')"
         />
         <InputGroupAddon>
           <ColorPicker
@@ -91,7 +90,14 @@ const submit = async () => {
 
     <template #footer>
       <div class="flex gap-3 mt-1 justify-content-center">
-        <Button :label="vehicle ? 'Edit' : 'Create'" @click="submit()" />
+        <Button
+          :label="
+            vehicle
+              ? $t('add-edit-vehicle.edit')
+              : $t('add-edit-vehicle.create')
+          "
+          @click="submit()"
+        />
       </div>
     </template>
   </Card>

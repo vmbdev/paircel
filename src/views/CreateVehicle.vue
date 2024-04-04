@@ -4,10 +4,9 @@ import AddEditVehicle from '@/components/AddEditVehicle.vue';
 
 <template>
   <AddEditVehicle>
-    <template #title>Add a new vehicle</template>
+    <template #title>{{ $t('create-vehicle.title') }}</template>
     <template #subtitle>
-      Doesn't matter if its a car, a motorcycle, a truck or whatever. If it can
-      be parked, it can be forgotten where.
+      {{ $t('create-vehicle.subtitle') }}
     </template>
   </AddEditVehicle>
 </template>

@@ -1,0 +1,68 @@
+{
+  "add-edit-vehicle": {
+    "color": "Color",
+    "color-help": "Can be the color of the car or just a color you like to differentiate it from the others.",
+    "create": "Create",
+    "edit": "Edit",
+    "name": "Name",
+    "name-help": "The brand, or the model, or just how you usually call it."
+  },
+  "create-vehicle": {
+    "subtitle": "Doesn't matter if its a car, a motorcycle, a truck or whatever. If it can be parked, it can be forgotten where.",
+    "title": "Add a new vehicle"
+  },
+  "edit-vehicle": {
+    "missing": "No vehicle with that identifier.",
+    "title": "Editing vehicle {name}"
+  },
+  "first-start": {
+    "add-vehicle": "Add vehicle",
+    "desc": "Never again circle your whole neighbourhood looking for your car!",
+    "first-step": "To start, let's create our first vehicle.",
+    "title": "Welcome to Paircel!"
+  },
+  "general": {
+    "accept": "Accept",
+    "cancel": "Cancel",
+    "confirmation": "Confirmation",
+    "create-vehicle": "Create vehicle",
+    "paircel-logo": "Paircel Logo",
+    "remove": "Remove",
+    "save": "Save"
+  },
+  "history": {
+    "confirm-msg": "Forget about this parking spot?",
+    "empty": "No records of any parking yet.",
+    "parked-days": "Parked {time} day ago | Parked {time} days ago",
+    "parked-hours": "Parked {time} hour ago | Parked {time} hours ago",
+    "parked-minutes": "Parked {time} minute ago | Parked {time} minutes ago"
+  },
+  "main-toolbar": {
+    "about": "About Paircel",
+    "history": "Parking history",
+    "list": "Vehicle list",
+    "park": "Park your vehicle"
+  },
+  "park": {
+    "confirm-msg": "Do you want to park in the selected spot?",
+    "confirm-title": "Park here",
+    "panel-title": "Select your vehicle and location",
+    "park": "Park"
+  },
+  "settings": {
+    "footer": "Developed with the intention of never having to send yourself the location again!",
+    "language": "Language",
+    "selector": "Interface language",
+    "title": "Settings"
+  },
+  "vehicle-list": {
+    "add": "Add vehicle",
+    "confirm-msg": "Remove {name}",
+    "empty": "No vehicles where found.",
+    "subtitle": "Click on your vehicle to see its parking history.",
+    "title": "Vehicle list"
+  },
+  "vehicle-selector": {
+    "select": "Select a vehicle"
+  }
+}

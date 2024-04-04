@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import Button from 'primevue/button';
 import ConfirmDialog from 'primevue/confirmdialog';
 import Panel from 'primevue/panel';
@@ -12,6 +13,7 @@ import VehicleSelector from '@/components/VehicleSelector.vue';
 import { type PaircelPosition } from '@/types/paircel-position';
 import { db, type Vehicle } from '@/db/db';
 
+const i18n = useI18n();
 const confirm = useConfirm();
 const toast = useToast();
 const router = useRouter();
@@ -29,15 +31,15 @@ const vehicleChanged = (vehicle: Vehicle) => {
 const savePosition = async () => {
   confirm.require({
     group: 'carparking',
-    header: 'Park here',
-    message: 'Do you want to park in the selected spot?',
+    header: i18n.t('park.confirm-title'),
+    message: i18n.t('park.confirm-msg'),
     icon: 'pi pi-question-circle',
     acceptIcon: 'pi pi-check',
     rejectIcon: 'pi pi-times',
     rejectClass: 'p-button-outlined p-button-sm',
     acceptClass: 'p-button-sm',
-    rejectLabel: 'Cancel',
-    acceptLabel: 'Park',
+    rejectLabel: i18n.t('general.cancel'),
+    acceptLabel: i18n.t('park.park'),
     accept: async () => {
       if (position.value && selectedVehicle.value?.id) {
         await db.history.put({
@@ -74,7 +76,7 @@ const savePosition = async () => {
     </template>
   </ConfirmDialog>
 
-  <Panel class="mb-2" header="Select your vehicle and position">
+  <Panel class="mb-2" :header="i18n.t('park.panel-title')">
     <VehicleSelector @update="vehicleChanged" />
   </Panel>
   <ParkingSelectorMap @change="positionChanged" />
@@ -82,7 +84,7 @@ const savePosition = async () => {
     <Button
       icon="pi pi-map-marker"
       class="w-6 h-3rem"
-      label="Park"
+      :label="$t('park.park')"
       severity="warning"
       @click="savePosition()"
       :disabled="!position || !selectedVehicle"

@@ -31,7 +31,7 @@ const bubbleUpdate = (value: Vehicle) => {
     :options="vehicles"
     filter
     optionLabel="name"
-    placeholder="Select a vehicle"
+    :placeholder="$t('vehicle-selector.select')"
     class="w-full md:w-14rem mb-3 mt-3"
     @update:modelValue="bubbleUpdate"
   >

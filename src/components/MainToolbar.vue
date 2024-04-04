@@ -11,7 +11,7 @@ import Button from 'primevue/button';
           <Button
             icon="pi pi-plus"
             severity="secondary"
-            aria-label="Create vehicle"
+            :aria-label="$t('general.create-vehicle')"
           />
         </RouterLink>
 
@@ -19,7 +19,7 @@ import Button from 'primevue/button';
           <Button
             icon="pi pi-history"
             severity="secondary"
-            aria-label="Parking history"
+            :aria-label="$t('main-toolbar.history')"
           />
         </RouterLink>
 
@@ -28,7 +28,7 @@ import Button from 'primevue/button';
             icon="pi pi-map-marker"
             class="special-button m-2 w-3rem h-3rem"
             severity="primary"
-            aria-label="Park your vehicle"
+            :aria-label="$t('main-toolbar.park')"
           />
         </RouterLink>
 
@@ -36,15 +36,15 @@ import Button from 'primevue/button';
           <Button
             icon="pi pi-car"
             severity="secondary"
-            aria-label="Vehicle list"
+            :aria-label="$t('main-toolbar.list')"
           />
         </RouterLink>
 
         <RouterLink :to="{ name: 'about' }">
           <Button
-            icon="pi pi-question"
+            icon="pi pi-cog"
             severity="secondary"
-            aria-label="About Paircel"
+            :aria-label="$t('main-toolbar.about')"
           />
         </RouterLink>
       </div>
@@ -56,6 +56,7 @@ import Button from 'primevue/button';
 .main-toolbar {
   max-height: 13vh;
 }
+
 .router-link-active {
   button:not(.special-button) {
     background-color: #e4e4e4;

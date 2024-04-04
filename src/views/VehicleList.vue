@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import DataView from 'primevue/dataview';
 import Button from 'primevue/button';
 import Card from 'primevue/card';
@@ -11,6 +12,7 @@ import SVGColorSquare from '@/components/SVGColorSquare.vue';
 import { type Vehicle, db } from '@/db/db';
 import { useDatabaseStore } from '@/stores/database';
 
+const i18n = useI18n();
 const store = useDatabaseStore();
 const confirm = useConfirm();
 const list = ref<Vehicle[]>([]);
@@ -27,11 +29,11 @@ const fetchVehicleList = async () => {
 
 const confirmRemove = (vehicle: Vehicle) => {
   confirm.require({
-    message: `Remove ${vehicle.name}?`,
-    header: 'Confirmation',
+    message: i18n.t('vehicle-list.confirm-msg', { name: vehicle.name }),
+    header: i18n.t('general.confirmation'),
     rejectClass: 'p-button-secondary p-button-outlined',
-    rejectLabel: 'Cancel',
-    acceptLabel: 'Remove',
+    rejectLabel: i18n.t('general.cancel'),
+    acceptLabel: i18n.t('general.remove'),
     accept: async () => {
       await db.vehicles.delete(vehicle.id);
       await db.history.where({ vehicleId: vehicle.id }).delete();
@@ -46,10 +48,10 @@ const confirmRemove = (vehicle: Vehicle) => {
   <ConfirmDialog></ConfirmDialog>
   <Card class="mb-2">
     <template #title>
-      <h1>Vehicle list</h1>
+      <h1>{{ $t('vehicle-list.title') }}</h1>
     </template>
     <template #subtitle>
-      Click on your vehicle to see its parking history.
+      {{ $t('vehicle-list.subtitle') }}
     </template>
   </Card>
   <DataView :value="list" dataKey="id">
@@ -97,9 +99,13 @@ const confirmRemove = (vehicle: Vehicle) => {
     </template>
     <template #empty>
       <div class="flex flex-column align-items-center gap-2">
-        <strong>No vehicles where found.</strong>
+        <strong>{{ $t('vehicle-list.empty') }}</strong>
         <RouterLink to="/create">
-          <Button label="Add vehicle" icon="pi pi-car" iconPos="right" />
+          <Button
+            :label="$t('vehicle-list.add')"
+            icon="pi pi-car"
+            iconPos="right"
+          />
         </RouterLink>
       </div>
     </template>

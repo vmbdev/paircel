@@ -18,11 +18,13 @@ onMounted(async () => {
 
 <template>
   <AddEditVehicle v-if="vehicle" :vehicle="vehicle">
-    <template #title>Editing vehicle {{ vehicle?.name }}</template>
+    <template #title>
+      {{ $t('edit-vehicle.title', { name: vehicle?.name }) }}
+    </template>
   </AddEditVehicle>
   <div v-else-if="dbChecked">
     <div class="flex flex-column align-items-center gap-2">
-      <strong>No records of any parking yet.</strong>
+      <strong>{{ $t('edit-vehicle.missing') }}</strong>
     </div>
   </div>
 </template>

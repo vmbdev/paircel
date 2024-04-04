@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { onBeforeRouteUpdate, useRoute } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import Timeline from 'primevue/timeline';
 import Card from 'primevue/card';
 import Button from 'primevue/button';
 import ConfirmDialog from 'primevue/confirmdialog';
 import { useConfirm } from 'primevue/useconfirm';
-import { formatDistanceToNow } from 'date-fns';
 
 import SVGColorSquare from '@/components/SVGColorSquare.vue';
 import { db, type ParkLocation } from '@/db/db';
+import { dateDiffToNow } from '@/helpers/date-diff';
 
+const i18n = useI18n();
 const route = useRoute();
 const confirm = useConfirm();
 const history = ref<ParkLocation[]>();
@@ -33,21 +35,27 @@ const refresh = async (newId?: number) => {
   dbChecked.value = true;
 };
 
-const getTimeDistance = (date: Date) => {
-  return formatDistanceToNow(date, { addSuffix: true });
+const getTimeDistance = (date: Date): string => {
+  const diff = dateDiffToNow(date);
+
+  return i18n.t(
+    `history.parked-${diff.unit}`,
+    { time: diff.difference },
+    diff.difference,
+  );
 };
 
 const remove = (id: number) => {
   confirm.require({
-    message: 'Forget about this parking spot?',
-    header: 'Confirmation',
+    message: i18n.t('history.confirm-msg'),
+    header: i18n.t('general.confirmation'),
     icon: 'pi pi-exclamation-triangle',
     acceptIcon: 'pi pi-check',
     rejectIcon: 'pi pi-times',
     rejectClass: 'p-button-outlined p-button-sm',
     acceptClass: 'p-button-sm',
-    rejectLabel: 'Cancel',
-    acceptLabel: 'Remove',
+    rejectLabel: i18n.t('general.cancel'),
+    acceptLabel: i18n.t('general.remove'),
     accept: async () => {
       await db.history.delete(id);
       await refresh();
@@ -97,7 +105,7 @@ const remove = (id: number) => {
               {{ slotProps.item.vehicle.name }}
             </template>
             <template #subtitle>
-              Parked {{ getTimeDistance(slotProps.item.date) }}
+              {{ getTimeDistance(slotProps.item.date) }}
             </template>
           </Card>
         </RouterLink>
@@ -105,10 +113,11 @@ const remove = (id: number) => {
       </div>
     </template>
   </Timeline>
-  <div v-else-if="dbChecked">
-    <div class="flex flex-column align-items-center gap-2">
-      <strong>No records of any parking yet.</strong>
-    </div>
+  <div
+    v-else-if="dbChecked"
+    class="flex flex-column align-items-center justify-content-center h-full gap-2"
+  >
+    <strong>{{ $t('history.empty') }}</strong>
   </div>
 </template>
 
@@ -117,3 +126,4 @@ const remove = (id: number) => {
   display: none;
 }
 </style>
+@/helpers/date-diff

@@ -1,0 +1,68 @@
+{
+  "add-edit-vehicle": {
+    "color": "Color",
+    "color-help": "Puede ser el color de tu coche o uno que te guste para diferenciarlo de otros.",
+    "create": "Crear",
+    "edit": "Editar",
+    "name": "Nombre",
+    "name-help": "La marca, el modelo, o como lo sueles llamas normalmente."
+  },
+  "create-vehicle": {
+    "subtitle": "No importa si es un coche, una moto, un tractor o lo que sea. Si se puede aparcar, podemos olvidar dónde.",
+    "title": "Añadir un nuevo vehículo"
+  },
+  "edit-vehicle": {
+    "missing": "No hay ningún vehículo con ese identificador.",
+    "title": "Editando el vehículo {name}"
+  },
+  "first-start": {
+    "add-vehicle": "Añadir vehículo",
+    "desc": "¡Nunca más des vueltas por el vecindario buscando tu coche!",
+    "first-step": "Para empezar, vamos a crear nuestro primer vehículo.",
+    "title": "¡Bienvenido a Paircel!"
+  },
+  "general": {
+    "accept": "Aceptar",
+    "cancel": "Cancelar",
+    "confirmation": "Confirmación",
+    "create-vehicle": "Crear vehículo",
+    "paircel-logo": "Logo de Paircel",
+    "remove": "Eliminar",
+    "save": "Guardar"
+  },
+  "history": {
+    "confirm-msg": "¿Olvidar este aparcamiento?",
+    "empty": "Aún no hay información de ningún aparcamiento.",
+    "parked-days": "Aparcado hace {time} día | Aparcado hace {time} días",
+    "parked-hours": "Aparcado hace {time} hora | Aparcado hace {time} horas",
+    "parked-minutes": "Aparcado hace {time} minuto | Aparcado hace {time} minutos"
+  },
+  "main-toolbar": {
+    "about": "Sobre Paircel",
+    "history": "Historial de aparcamientos",
+    "list": "Lista de vehículos",
+    "park": "Aparca tu vehículo"
+  },
+  "park": {
+    "confirm-msg": "¿Quieres aparcar aquí?",
+    "confirm-title": "Aparcar aquí",
+    "panel-title": "Elige tu vehículo y ubicación",
+    "park": "Aparcar"
+  },
+  "settings": {
+    "footer": "Desarrollado para no tener que enviarte a ti mismo la localización de tu coche.",
+    "language": "Idioma",
+    "selector": "Idioma de la interfaz",
+    "title": "Configuración"
+  },
+  "vehicle-list": {
+    "add": "Añadir vehículo",
+    "confirm-msg": "Eliminar {name}",
+    "empty": "No se ha encontrado ningún vehículo.",
+    "subtitle": "Selecciona tu vehículo para ver el historial de aparcamientos.",
+    "title": "Lista de vehículos"
+  },
+  "vehicle-selector": {
+    "select": "Selecciona un vehículo"
+  }
+}
