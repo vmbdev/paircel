@@ -4,7 +4,7 @@ import Button from 'primevue/button';
 </script>
 
 <template>
-  <Toolbar class="main-toolbar">
+  <Toolbar>
     <template #center>
       <div class="flex align-items-center gap-2 w-full justify-content-evenly">
         <RouterLink to="/create">
@@ -53,10 +53,6 @@ import Button from 'primevue/button';
 </template>
 
 <style>
-.main-toolbar {
-  max-height: 13vh;
-}
-
 .router-link-active {
   button:not(.special-button) {
     background-color: #e4e4e4;

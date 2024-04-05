@@ -42,7 +42,7 @@ const mapsStore = useMapsStore();
   background-color: white;
 }
 .main-content {
-  height: 88vh;
+  height: 87vh;
   overflow-y: scroll;
 }
 .transparent {

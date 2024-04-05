@@ -22,7 +22,7 @@ export class PaircelDatabase extends Dexie {
   constructor() {
     super('PaircelDatabase');
     this.version(1).stores({
-      vehicles: '++id, name, color, history',
+      vehicles: '++id, name, color',
       history: '++id, vehicleId, date, lon, lat',
     });
   }

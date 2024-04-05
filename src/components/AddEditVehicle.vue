@@ -103,11 +103,9 @@ const submit = async () => {
   </Card>
 </template>
 
-<style lang="scss">
-.createvehicle {
-  &__color {
-    width: 24px;
-    height: 24px;
-  }
+<style>
+.createvehicle__color {
+  width: 24px;
+  height: 24px;
 }
 </style>

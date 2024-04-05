@@ -83,7 +83,7 @@ const remove = (id: number) => {
     v-if="history && history.length > 0"
     align="left"
     :value="history"
-    class="w-full md:w-20rem"
+    class="my-2 mx-2 md:w-20rem"
   >
     <template #marker="slotProps">
       <SVGColorSquare :size="20" :color="slotProps.item.vehicle.color" />
@@ -126,4 +126,3 @@ const remove = (id: number) => {
   display: none;
 }
 </style>
-@/helpers/date-diff

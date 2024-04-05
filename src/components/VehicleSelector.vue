@@ -18,6 +18,12 @@ onMounted(async () => {
 
 const fetchVehicleList = async () => {
   vehicles.value = await db.vehicles.toArray();
+
+  if (vehicles.value.length > 0) {
+    selectedVehicle.value = vehicles.value[0];
+
+    emit('update', selectedVehicle.value);
+  }
 };
 
 const bubbleUpdate = (value: Vehicle) => {

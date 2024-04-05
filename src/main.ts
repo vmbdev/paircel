@@ -1,4 +1,5 @@
 import './assets/main.css';
+import 'primevue/resources/themes/aura-light-green/theme.css';
 
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
@@ -7,7 +8,6 @@ import { Preferences } from '@capacitor/preferences';
 import PrimeVue from 'primevue/config';
 import ConfirmationService from 'primevue/confirmationservice';
 import ToastService from 'primevue/toastservice';
-import 'primevue/resources/themes/aura-light-green/theme.css';
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
 

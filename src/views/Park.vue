@@ -50,7 +50,8 @@ const savePosition = async () => {
         });
         toast.add({
           severity: 'info',
-          summary: `${selectedVehicle.value.name} just parked!`,
+          summary: selectedVehicle.value.name,
+          detail: `${selectedVehicle.value.name} just parked!`,
           life: 5000,
         });
 
