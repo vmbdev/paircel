@@ -1,3 +1,5 @@
+import { describe, test, expect } from 'vitest';
+
 import { toDMS } from '@/helpers/geocoords';
 
 describe('Date differences', () => {
