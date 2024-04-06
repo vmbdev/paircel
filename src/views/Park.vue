@@ -45,7 +45,7 @@ const savePosition = async () => {
         await db.history.put({
           vehicleId: selectedVehicle.value.id,
           date: new Date(),
-          lon: position.value.lng,
+          lng: position.value.lng,
           lat: position.value.lat,
         });
         toast.add({

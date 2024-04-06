@@ -11,7 +11,7 @@ export interface ParkLocation {
   vehicleId: number;
   vehicle?: Vehicle;
   date: Date;
-  lon: number;
+  lng: number;
   lat: number;
 }
 
@@ -23,7 +23,7 @@ export class PaircelDatabase extends Dexie {
     super('PaircelDatabase');
     this.version(1).stores({
       vehicles: '++id, name, color',
-      history: '++id, vehicleId, date, lon, lat',
+      history: '++id, vehicleId, date, lng, lat',
     });
   }
 

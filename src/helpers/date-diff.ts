@@ -4,8 +4,8 @@ export type DateDiff = {
 };
 
 export const dateDiffToNow = (date: Date): DateDiff => {
-  let res: DateDiff;
   const timeDiff = Date.now() - date.getTime();
+  let res: DateDiff;
 
   if (timeDiff > 86400000) {
     res = {

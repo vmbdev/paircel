@@ -5,7 +5,14 @@
  * @param {'lat' | 'lng'} type  Longitude ('lng') or latitude ('lat')
  * @returns {string} The coordinate in DMS
  */
-const toDMS = (coord: number, type: 'lat' | 'lng'): string => {
+const toDMS = (coord: number, type: 'lat' | 'lng'): string | null => {
+  if (
+    (type === 'lat' && (coord < -90 || coord > 90)) ||
+    (type === 'lng' && (coord < 0 || coord > 180))
+  ) {
+    return null;
+  }
+
   const points = type === 'lng' ? ['E', 'W'] : ['N', 'S'];
 
   const absolute = Math.abs(coord);
