@@ -96,7 +96,7 @@ const remove = (id: number) => {
             name: 'navigation',
             query: {
               lat: slotProps.item.lat,
-              lng: slotProps.item.lon,
+              lng: slotProps.item.lng,
             },
           }"
         >
