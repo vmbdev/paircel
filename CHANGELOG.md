@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.2] - 2024-05-11
+
+### Added
+
+- Now you can share a parking spot.
+- New "Get Directions" button opens Google Maps in direction mode.
+
+### Changes
+
+- Back button now navigates back in the application.
+
 ## [1.0.1] - 2024-05-02
 
 ### Changes
