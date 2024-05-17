@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.3] - 2024-05-18
+
+### Changes
+
+- Updated translations.
+
 ## [1.0.2] - 2024-05-11
 
 ### Added

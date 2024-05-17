@@ -43,6 +43,10 @@
     "list": "Vehicle list",
     "park": "Park your vehicle"
   },
+  "map-navigation": {
+    "directions": "Get directions",
+    "share": "Share"
+  },
   "park": {
     "confirm-msg": "Do you want to park in the selected spot?",
     "confirm-title": "Park here",

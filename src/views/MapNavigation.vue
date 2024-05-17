@@ -9,7 +9,6 @@ import type { PaircelPosition } from '@/types/paircel-position';
 const props = defineProps<{
   coords: PaircelPosition;
 }>();
-
 const url = `https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=${props.coords.lat},${props.coords.lng}`;
 
 const openInGMaps = () => {
@@ -26,15 +25,15 @@ const shareUrl = async () => {
 
   <ButtonGroup class="flex flex-row justify-content-center mt-1">
     <Button
-      label="Get directions"
-      icon="pi pi-map-marker"
+      :label="$t('map-navigation.directions')"
+      icon="pi pi-google"
       severity="help"
       @click="openInGMaps()"
     ></Button>
     <Button
-      label="Share"
+      :label="$t('map-navigation.share')"
       icon="pi pi-share-alt"
-      severity="info"
+      severity="help"
       @click="shareUrl()"
     ></Button>
   </ButtonGroup>

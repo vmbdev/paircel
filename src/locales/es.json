@@ -43,6 +43,10 @@
     "list": "Lista de vehículos",
     "park": "Aparca tu vehículo"
   },
+  "map-navigation": {
+    "directions": "Ver direcciones",
+    "share": "Compartir"
+  },
   "park": {
     "confirm-msg": "¿Quieres aparcar aquí?",
     "confirm-title": "Aparcar aquí",
