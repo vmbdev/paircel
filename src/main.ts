@@ -1,5 +1,5 @@
 import './assets/main.css';
-import 'primevue/resources/themes/aura-light-green/theme.css';
+import Aura from '@primeuix/themes/aura';
 
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
@@ -51,7 +51,14 @@ app.use(
 );
 
 /** PrimeVue */
-app.use(PrimeVue);
+app.use(PrimeVue, {
+  theme: {
+    preset: Aura,
+    options: {
+      darkModeSelector: false,
+    }
+  },
+});
 app.use(ConfirmationService);
 app.use(ToastService);
 

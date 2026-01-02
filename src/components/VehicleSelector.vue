@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import Dropdown from 'primevue/dropdown';
+import Select from 'primevue/select';
 
 import SVGColorSquare from '@/components/SVGColorSquare.vue';
 import { type Vehicle, db } from '@/db/db';
@@ -19,7 +19,7 @@ onMounted(async () => {
 const fetchVehicleList = async () => {
   vehicles.value = await db.vehicles.toArray();
 
-  if (vehicles.value.length > 0) {
+  if (vehicles.value?.[0]) {
     selectedVehicle.value = vehicles.value[0];
 
     emit('update', selectedVehicle.value);
@@ -32,7 +32,7 @@ const bubbleUpdate = (value: Vehicle) => {
 </script>
 
 <template>
-  <Dropdown
+  <Select
     v-model="selectedVehicle"
     :options="vehicles"
     filter
@@ -57,5 +57,5 @@ const bubbleUpdate = (value: Vehicle) => {
         <div>{{ slotProps.option.name }}</div>
       </div>
     </template>
-  </Dropdown>
+  </Select>
 </template>

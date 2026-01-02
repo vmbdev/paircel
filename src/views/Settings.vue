@@ -3,7 +3,7 @@ import { onMounted, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { Preferences } from '@capacitor/preferences';
 import Avatar from 'primevue/avatar';
-import Dropdown from 'primevue/dropdown';
+import Select from 'primevue/select';
 import Divider from 'primevue/divider';
 
 import { useLanguageStore } from '@/stores/language';
@@ -42,7 +42,7 @@ watch(selectedLang, async () => {
     </header>
     <section class="flex flex-1 flex-column p-3 gap-3 mb-8">
       <h2>{{ $t('settings.selector') }}</h2>
-      <Dropdown
+      <Select
         v-model="selectedLang"
         :options="languageStore.available"
         optionLabel="label"
