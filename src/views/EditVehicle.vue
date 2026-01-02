@@ -10,9 +10,12 @@ const vehicle = ref<Vehicle>();
 const dbChecked = ref<boolean>(false);
 
 onMounted(async () => {
-  const id = +route.params.vehicleId;
-  vehicle.value = await db.vehicles.get(id);
-  dbChecked.value = true;
+  if (route.params.vehicleId) {
+    const id = +route.params.vehicleId;
+
+    vehicle.value = await db.vehicles.get(id);
+    dbChecked.value = true;
+  }
 });
 </script>
 
@@ -23,7 +26,7 @@ onMounted(async () => {
     </template>
   </AddEditVehicle>
   <div v-else-if="dbChecked">
-    <div class="flex flex-column align-items-center gap-2">
+    <div class="flex flex-col items-center gap-2">
       <strong>{{ $t('edit-vehicle.missing') }}</strong>
     </div>
   </div>

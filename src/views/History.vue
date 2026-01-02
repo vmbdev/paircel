@@ -23,7 +23,7 @@ onMounted(async () => {
 });
 
 onBeforeRouteUpdate(async (to, from) => {
-  if (to.params.vehicleId !== from.params.vehicleId) {
+  if (to.params.vehicleId && to.params.vehicleId !== from.params.vehicleId) {
     await refresh(+to.params.vehicleId);
   }
 });
@@ -68,7 +68,7 @@ const remove = (id: number) => {
   <ConfirmDialog>
     <template #message="slotProps">
       <div
-        class="flex flex-row align-items-center w-full gap-3 border-bottom-1 surface-border"
+        class="flex flex-row items-center w-full gap-6 border-b border-surface"
       >
         <i
           :class="slotProps.message.icon"
@@ -83,15 +83,15 @@ const remove = (id: number) => {
     v-if="history && history.length > 0"
     align="left"
     :value="history"
-    class="my-2 mx-2 md:w-20rem"
+    class="my-2 mx-2 md:w-80"
   >
     <template #marker="slotProps">
       <SVGColorSquare :size="20" :color="slotProps.item.vehicle.color" />
     </template>
     <template #content="slotProps">
-      <div class="flex flex-row align-items-center">
+      <div class="flex flex-row items-center">
         <RouterLink
-          class="m-1 mr-3 flex-1 no-underline block"
+          class="m-1 mr-6 flex-1 no-underline block"
           :to="{
             name: 'navigation',
             query: {
@@ -115,7 +115,7 @@ const remove = (id: number) => {
   </Timeline>
   <div
     v-else-if="dbChecked"
-    class="flex flex-column align-items-center justify-content-center h-full gap-2"
+    class="flex flex-col items-center justify-center h-full gap-2"
   >
     <strong>{{ $t('history.empty') }}</strong>
   </div>

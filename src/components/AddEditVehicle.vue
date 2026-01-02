@@ -89,7 +89,7 @@ const submit = async () => {
     </template>
 
     <template #footer>
-      <div class="flex gap-3 mt-1 justify-content-center">
+      <div class="flex gap-6 mt-1 justify-center">
         <Button
           :label="
             vehicle

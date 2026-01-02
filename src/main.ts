@@ -8,7 +8,6 @@ import { Preferences } from '@capacitor/preferences';
 import PrimeVue from 'primevue/config';
 import ConfirmationService from 'primevue/confirmationservice';
 import ToastService from 'primevue/toastservice';
-import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
 
 import App from '@/App.vue';

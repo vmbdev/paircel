@@ -6,7 +6,7 @@ import Button from 'primevue/button';
 <template>
   <Toolbar>
     <template #center>
-      <div class="flex align-items-center gap-2 w-full justify-content-evenly">
+      <div class="flex items-center gap-2 w-full justify-evenly">
         <RouterLink to="/create">
           <Button
             icon="pi pi-plus"
@@ -26,7 +26,7 @@ import Button from 'primevue/button';
         <RouterLink :to="{ name: 'park' }">
           <Button
             icon="pi pi-map-marker"
-            class="special-button m-2 w-3rem h-3rem"
+            class="special-button m-2 w-full h-12"
             severity="primary"
             :aria-label="$t('main-toolbar.park')"
           />

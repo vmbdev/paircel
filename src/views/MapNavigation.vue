@@ -23,7 +23,7 @@ const shareUrl = async () => {
 <template>
   <ParkingSelectorMap :viewMode="true" :coords="props.coords" />
 
-  <ButtonGroup class="flex flex-row justify-content-center mt-1">
+  <ButtonGroup class="flex flex-row justify-center mt-1">
     <Button
       :label="$t('map-navigation.directions')"
       icon="pi pi-google"

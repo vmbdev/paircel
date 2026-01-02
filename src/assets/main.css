@@ -1,3 +1,6 @@
+@import "tailwindcss";
+@import "tailwindcss-primeui";
+
 body {
   font-family: 'Varta', sans-serif;
   font-optical-sizing: auto;

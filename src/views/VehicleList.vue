@@ -56,23 +56,23 @@ const confirmRemove = (vehicle: Vehicle) => {
   </Card>
   <DataView :value="list" dataKey="id">
     <template #list="slotProps">
-      <ul class="grid grid-nogutter p-0 m-0 list-none">
+      <ul class="grid grid-cols-12 gap-4 grid-cols-12 gap-6 grid-nogutter p-0 m-0 list-none">
         <li
           v-for="(item, index) in slotProps.items"
           :key="item.id"
-          class="col-12 flex flex-column sm:align-items-center p-4"
+          class="col-span-12 flex flex-col sm:items-center p-12"
           :class="{ 'border-top-1 surface-border': index !== 0 }"
         >
           <div
-            class="flex flex-row justify-content-between align-items-start gap-2 md:w-6"
+            class="flex flex-row justify-between items-start gap-2 md:w-6/12"
           >
             <div class="flex-1 flex flex-row gap-2">
               <RouterLink
                 :to="{ name: 'history', params: { vehicleId: item.id } }"
               >
-                <Chip class="py-0 pl-0 pr-3">
+                <Chip class="py-0 pl-0 pr-6">
                   <span
-                    class="w-2rem h-2rem flex align-items-center justify-content-center"
+                    class="w-8/12 h-8 flex items-center justify-center"
                   >
                     <SVGColorSquare :size="30" :color="item.color" />
                   </span>
@@ -98,7 +98,7 @@ const confirmRemove = (vehicle: Vehicle) => {
       </ul>
     </template>
     <template #empty>
-      <div class="flex flex-column align-items-center gap-2">
+      <div class="flex flex-col items-center gap-2">
         <strong>{{ $t('vehicle-list.empty') }}</strong>
         <RouterLink to="/create">
           <Button

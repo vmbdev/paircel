@@ -3,7 +3,7 @@ import Button from 'primevue/button';
 </script>
 
 <template>
-  <header class="flex justify-content-center">
+  <header class="flex justify-center">
     <img
       class="firststart__logo"
       src="@/assets/logo-256.png"
@@ -11,7 +11,7 @@ import Button from 'primevue/button';
     />
   </header>
 
-  <section class="flex flex-column align-items-center">
+  <section class="flex flex-col items-center">
     <h1>{{ $t('first-start.title') }}</h1>
     <p class="text-center">
       {{ $t('first-start.desc') }}

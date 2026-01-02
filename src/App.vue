@@ -31,7 +31,7 @@ const mapsStore = useMapsStore();
   <!-- background transparent when gmaps is active, necessary on Android -->
   <div
     v-else
-    class="main-container flex flex-column"
+    class="main-container flex flex-col"
     :class="{ transparent: mapsStore.enabled }"
   >
     <main role="main" class="main-content p-2">

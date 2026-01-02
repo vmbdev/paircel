@@ -36,11 +36,11 @@ watch(selectedLang, async () => {
 </script>
 
 <template>
-  <article class="flex flex-column h-full">
-    <header class="flex justify-content-center">
+  <article class="flex flex-col h-full">
+    <header class="flex justify-center">
       <h1>{{ $t('settings.title') }}</h1>
     </header>
-    <section class="flex flex-1 flex-column p-3 gap-3 mb-8">
+    <section class="flex flex-1 flex-col p-6 gap-6 mb-20">
       <h2>{{ $t('settings.selector') }}</h2>
       <Select
         v-model="selectedLang"
@@ -48,11 +48,11 @@ watch(selectedLang, async () => {
         optionLabel="label"
         optionValue="locale"
         :placeholder="$t('settings.language')"
-        class="w-full md:w-14rem"
+        class="w-full md:w-56"
       />
     </section>
     <Divider />
-    <section class="flex flex-column align-items-center">
+    <section class="flex flex-col items-center">
       <strong class="text-center">
         {{ $t('settings.footer') }}
       </strong>

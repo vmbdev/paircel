@@ -131,7 +131,7 @@ const setMarker = async (lat: number, lng: number): Promise<string | null> => {
     ref="mapRef"
     class="relative block"
     :class="{
-      'h-25rem': !props.viewMode,
+      'h-[25rem]': !props.viewMode,
     }"
     :style="{ height: '80vh' }"
   />

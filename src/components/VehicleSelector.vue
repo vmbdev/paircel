@@ -38,11 +38,11 @@ const bubbleUpdate = (value: Vehicle) => {
     filter
     optionLabel="name"
     :placeholder="$t('vehicle-selector.select')"
-    class="w-full md:w-14rem mb-3 mt-3"
+    class="w-full md:w-56 mb-6 mt-6"
     @update:modelValue="bubbleUpdate"
   >
     <template #value="slotProps">
-      <div v-if="slotProps.value" class="flex align-items-center gap-2">
+      <div v-if="slotProps.value" class="flex items-center gap-2">
         <SVGColorSquare :size="25" :color="slotProps.value.color" />
         <div>{{ slotProps.value.name }}</div>
       </div>
@@ -52,7 +52,7 @@ const bubbleUpdate = (value: Vehicle) => {
     </template>
 
     <template #option="slotProps">
-      <div class="flex align-items-center gap-2">
+      <div class="flex items-center gap-2">
         <SVGColorSquare :size="25" :color="slotProps.option.color" />
         <div>{{ slotProps.option.name }}</div>
       </div>

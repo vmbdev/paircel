@@ -66,7 +66,7 @@ const savePosition = async () => {
   <ConfirmDialog group="carparking">
     <template #message="slotProps">
       <div
-        class="flex flex-row align-items-center w-full gap-3 border-bottom-1 surface-border"
+        class="flex flex-row items-center w-full gap-6 border-b border-surface"
       >
         <i
           :class="slotProps.message.icon"
@@ -81,10 +81,10 @@ const savePosition = async () => {
     <VehicleSelector @update="vehicleChanged" />
   </Panel>
   <ParkingSelectorMap @change="positionChanged" />
-  <div class="relative flex flex-column w-full align-items-center gap-3 m-2">
+  <div class="relative flex flex-col w-full items-center gap-6 m-2">
     <Button
       icon="pi pi-map-marker"
-      class="w-6 h-3rem"
+      class="w-6/12 h-12"
       :label="$t('park.park')"
       severity="warning"
       @click="savePosition()"
