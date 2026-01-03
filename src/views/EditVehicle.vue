@@ -6,6 +6,7 @@ import AddEditVehicle from '@/components/AddEditVehicle.vue';
 import { db, type Vehicle } from '@/db/db';
 
 const route = useRoute();
+
 const vehicle = ref<Vehicle>();
 const dbChecked = ref<boolean>(false);
 
@@ -20,7 +21,10 @@ onMounted(async () => {
 </script>
 
 <template>
-  <AddEditVehicle v-if="vehicle" :vehicle="vehicle">
+  <AddEditVehicle
+    v-if="vehicle"
+    :vehicle="vehicle"
+  >
     <template #title>
       {{ $t('edit-vehicle.title', { name: vehicle?.name }) }}
     </template>

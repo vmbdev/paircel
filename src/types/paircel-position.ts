@@ -1,1 +1,4 @@
-export type PaircelPosition = { lat: number; lng: number };
+export type PaircelPosition = {
+  lat: number;
+  lng: number;
+};

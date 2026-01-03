@@ -23,9 +23,7 @@ watch(selectedLang, async () => {
 
     // load if it isn't yet available
     if (!i18n.availableLocales.includes(selectedLang.value)) {
-      const { default: messages } = await import(
-        `../locales/${selectedLang.value}.json`
-      );
+      const { default: messages } = await import(`../locales/${selectedLang.value}.json`);
 
       i18n.setLocaleMessage(selectedLang.value, messages);
     }
@@ -44,11 +42,11 @@ watch(selectedLang, async () => {
       <h2>{{ $t('settings.selector') }}</h2>
       <Select
         v-model="selectedLang"
-        :options="languageStore.available"
-        optionLabel="label"
-        optionValue="locale"
-        :placeholder="$t('settings.language')"
         class="w-full md:w-56"
+        option-label="label"
+        option-value="locale"
+        :options="languageStore.available"
+        :placeholder="$t('settings.language')"
       />
     </section>
     <Divider />
@@ -57,7 +55,11 @@ watch(selectedLang, async () => {
         {{ $t('settings.footer') }}
       </strong>
       <a href="https://github.com/vmbdev/paircel">
-        <Avatar icon="pi pi-github" class="mr-2" size="xlarge" />
+        <Avatar
+          icon="pi pi-github"
+          class="mr-2"
+          size="xlarge"
+        />
       </a>
     </section>
   </article>

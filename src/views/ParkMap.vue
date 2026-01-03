@@ -65,9 +65,7 @@ const savePosition = async () => {
 <template>
   <ConfirmDialog group="carparking">
     <template #message="slotProps">
-      <div
-        class="flex flex-row items-center w-full gap-6 border-b border-surface"
-      >
+      <div class="flex flex-row items-center w-full gap-6 border-b border-surface">
         <i
           :class="slotProps.message.icon"
           class="text-6xl text-primary-500"
@@ -77,7 +75,10 @@ const savePosition = async () => {
     </template>
   </ConfirmDialog>
 
-  <Panel class="mb-2" :header="i18n.t('park.panel-title')">
+  <Panel
+    class="mb-2"
+    :header="i18n.t('park.panel-title')"
+  >
     <VehicleSelector @update="vehicleChanged" />
   </Panel>
   <ParkingSelectorMap @change="positionChanged" />
@@ -85,10 +86,10 @@ const savePosition = async () => {
     <Button
       icon="pi pi-map-marker"
       class="w-6/12 h-12"
-      :label="$t('park.park')"
       severity="warning"
-      @click="savePosition()"
+      :label="$t('park.park')"
       :disabled="!position || !selectedVehicle"
+      @click="savePosition()"
     />
   </div>
 </template>

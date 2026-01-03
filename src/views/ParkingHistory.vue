@@ -29,7 +29,15 @@ onBeforeRouteUpdate(async (to, from) => {
 });
 
 const refresh = async (newId?: number) => {
-  const vId = newId ?? +route.params.vehicleId;
+  let vId: number | undefined;
+
+  if (newId !== undefined) {
+    vId = newId;
+  } else if (route.params.vehicleId) {
+    vId = +route.params.vehicleId;
+  } else {
+    vId = undefined;
+  }
 
   history.value = await db.getHistoryWithVehicles(vId ?? undefined);
   dbChecked.value = true;
@@ -38,11 +46,7 @@ const refresh = async (newId?: number) => {
 const getTimeDistance = (date: Date): string => {
   const diff = dateDiffToNow(date);
 
-  return i18n.t(
-    `history.parked-${diff.unit}`,
-    { time: diff.difference },
-    diff.difference,
-  );
+  return i18n.t(`history.parked-${diff.unit}`, { time: diff.difference }, diff.difference);
 };
 
 const remove = (id: number) => {
@@ -67,9 +71,7 @@ const remove = (id: number) => {
 <template>
   <ConfirmDialog>
     <template #message="slotProps">
-      <div
-        class="flex flex-row items-center w-full gap-6 border-b border-surface"
-      >
+      <div class="flex flex-row items-center w-full gap-6 border-b border-surface">
         <i
           :class="slotProps.message.icon"
           class="text-6xl text-primary-500"
@@ -82,11 +84,14 @@ const remove = (id: number) => {
   <Timeline
     v-if="history && history.length > 0"
     align="left"
-    :value="history"
     class="my-2 mx-2 md:w-80"
+    :value="history"
   >
     <template #marker="slotProps">
-      <SVGColorSquare :size="20" :color="slotProps.item.vehicle.color" />
+      <SVGColorSquare
+        :size="20"
+        :color="slotProps.item.vehicle.color"
+      />
     </template>
     <template #content="slotProps">
       <div class="flex flex-row items-center">
@@ -109,7 +114,10 @@ const remove = (id: number) => {
             </template>
           </Card>
         </RouterLink>
-        <Button icon="pi pi-trash" @click="remove(slotProps.item.id)" />
+        <Button
+          icon="pi pi-trash"
+          @click="remove(slotProps.item.id)"
+        />
       </div>
     </template>
   </Timeline>

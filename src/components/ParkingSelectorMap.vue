@@ -27,10 +27,7 @@ let positionWatcherCount: number = 0;
 
 watch(currentCoords, async () => {
   if (!props.viewMode) {
-    currentMarker.value = await setMarker(
-      currentCoords.value.lat,
-      currentCoords.value.lng,
-    );
+    currentMarker.value = await setMarker(currentCoords.value.lat, currentCoords.value.lng);
 
     emit('change', currentCoords.value);
   }
@@ -59,10 +56,7 @@ onMounted(async () => {
     ]);
   }
 
-  positionWatcher = await Geolocation.watchPosition(
-    { enableHighAccuracy: true },
-    updatePosition,
-  );
+  positionWatcher = await Geolocation.watchPosition({ enableHighAccuracy: true }, updatePosition);
 });
 
 onUnmounted(async () => {

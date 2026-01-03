@@ -55,7 +55,7 @@ app.use(PrimeVue, {
     preset: Aura,
     options: {
       darkModeSelector: false,
-    }
+    },
   },
 });
 app.use(ConfirmationService);

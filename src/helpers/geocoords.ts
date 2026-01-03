@@ -7,8 +7,8 @@
  */
 const toDMS = (coord: number, type: 'lat' | 'lng'): string | null => {
   if (
-    (type === 'lat' && (coord < -90 || coord > 90)) ||
-    (type === 'lng' && (coord < 0 || coord > 180))
+    (type === 'lat' && (coord < -90 || coord > 90))
+    || (type === 'lng' && (coord < 0 || coord > 180))
   ) {
     return null;
   }

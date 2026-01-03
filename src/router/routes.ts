@@ -21,7 +21,7 @@ const router = createRouter({
     {
       path: '/history/:vehicleId?',
       name: 'history',
-      component: () => import('../views/History.vue'),
+      component: () => import('../views/ParkingHistory.vue'),
     },
     {
       path: '/edit/:vehicleId',
@@ -31,12 +31,12 @@ const router = createRouter({
     {
       path: '/about',
       name: 'about',
-      component: () => import('../views/Settings.vue'),
+      component: () => import('../views/UserSettings.vue'),
     },
     {
       path: '/park',
       name: 'park',
-      component: () => import('../views/Park.vue'),
+      component: () => import('../views/ParkMap.vue'),
     },
     {
       path: '/navigation',

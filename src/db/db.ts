@@ -32,10 +32,7 @@ export class PaircelDatabase extends Dexie {
 
     if (vehicleId) {
       // Dexie currently doesn't support ordering and filtering in the backend
-      history = await this.history
-        .where({ vehicleId })
-        .reverse()
-        .sortBy('date');
+      history = await this.history.where({ vehicleId }).reverse().sortBy('date');
     } else {
       history = await this.history.orderBy('date').reverse().toArray();
     }

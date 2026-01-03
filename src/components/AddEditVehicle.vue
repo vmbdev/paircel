@@ -59,13 +59,13 @@ const submit = async () => {
       <p id="name-help">
         {{ $t('add-edit-vehicle.name-help') }}
       </p>
-      <IconField iconPosition="left">
+      <IconField icon-position="left">
         <InputIcon class="pi pi-align-justify"></InputIcon>
         <InputText
-          class="w-full"
           v-model="name"
-          :placeholder="$t('add-edit-vehicle.name')"
           aria-describedby="name-help"
+          class="w-full"
+          :placeholder="$t('add-edit-vehicle.name')"
         />
       </IconField>
 
@@ -91,11 +91,7 @@ const submit = async () => {
     <template #footer>
       <div class="flex gap-6 mt-1 justify-center">
         <Button
-          :label="
-            vehicle
-              ? $t('add-edit-vehicle.edit')
-              : $t('add-edit-vehicle.create')
-          "
+          :label="vehicle ? $t('add-edit-vehicle.edit') : $t('add-edit-vehicle.create')"
           @click="submit()"
         />
       </div>

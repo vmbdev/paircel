@@ -21,20 +21,23 @@ const shareUrl = async () => {
 </script>
 
 <template>
-  <ParkingSelectorMap :viewMode="true" :coords="props.coords" />
+  <ParkingSelectorMap
+    :view-mode="true"
+    :coords="props.coords"
+  />
 
   <ButtonGroup class="flex flex-row justify-center mt-1">
     <Button
-      :label="$t('map-navigation.directions')"
       icon="pi pi-google"
       severity="help"
+      :label="$t('map-navigation.directions')"
       @click="openInGMaps()"
-    ></Button>
+    />
     <Button
-      :label="$t('map-navigation.share')"
       icon="pi pi-share-alt"
       severity="help"
+      :label="$t('map-navigation.share')"
       @click="shareUrl()"
-    ></Button>
+    />
   </ButtonGroup>
 </template>

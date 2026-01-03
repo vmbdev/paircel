@@ -54,7 +54,10 @@ const confirmRemove = (vehicle: Vehicle) => {
       {{ $t('vehicle-list.subtitle') }}
     </template>
   </Card>
-  <DataView :value="list" dataKey="id">
+  <DataView
+    :value="list"
+    data-key="id"
+  >
     <template #list="slotProps">
       <ul class="grid grid-cols-12 gap-4 grid-cols-12 gap-6 grid-nogutter p-0 m-0 list-none">
         <li
@@ -63,18 +66,15 @@ const confirmRemove = (vehicle: Vehicle) => {
           class="col-span-12 flex flex-col sm:items-center p-12"
           :class="{ 'border-top-1 surface-border': index !== 0 }"
         >
-          <div
-            class="flex flex-row justify-between items-start gap-2 md:w-6/12"
-          >
+          <div class="flex flex-row justify-between items-start gap-2 md:w-6/12">
             <div class="flex-1 flex flex-row gap-2">
-              <RouterLink
-                :to="{ name: 'history', params: { vehicleId: item.id } }"
-              >
+              <RouterLink :to="{ name: 'history', params: { vehicleId: item.id } }">
                 <Chip class="py-0 pl-0 pr-6">
-                  <span
-                    class="w-8/12 h-8 flex items-center justify-center"
-                  >
-                    <SVGColorSquare :size="30" :color="item.color" />
+                  <span class="w-8/12 h-8 flex items-center justify-center">
+                    <SVGColorSquare
+                      :size="30"
+                      :color="item.color"
+                    />
                   </span>
                   <span class="ml-2 font-medium">{{ item.name }}</span>
                 </Chip>
@@ -82,10 +82,11 @@ const confirmRemove = (vehicle: Vehicle) => {
             </div>
 
             <div class="flex flex-row md:flex-row gap-2">
-              <RouterLink
-                :to="{ name: 'edit', params: { vehicleId: item.id } }"
-              >
-                <Button icon="pi pi-file-edit" severity="info"></Button>
+              <RouterLink :to="{ name: 'edit', params: { vehicleId: item.id } }">
+                <Button
+                  icon="pi pi-file-edit"
+                  severity="info"
+                ></Button>
               </RouterLink>
               <Button
                 icon="pi pi-trash"
@@ -102,14 +103,12 @@ const confirmRemove = (vehicle: Vehicle) => {
         <strong>{{ $t('vehicle-list.empty') }}</strong>
         <RouterLink to="/create">
           <Button
-            :label="$t('vehicle-list.add')"
             icon="pi pi-car"
-            iconPos="right"
+            icon-pos="right"
+            :label="$t('vehicle-list.add')"
           />
         </RouterLink>
       </div>
     </template>
   </DataView>
 </template>
-
-<style></style>

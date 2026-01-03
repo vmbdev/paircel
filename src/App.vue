@@ -34,7 +34,10 @@ const mapsStore = useMapsStore();
     class="main-container flex flex-col"
     :class="{ transparent: mapsStore.enabled }"
   >
-    <main role="main" class="main-content p-2">
+    <main
+      role="main"
+      class="main-content p-2"
+    >
       <RouterView />
     </main>
     <footer>

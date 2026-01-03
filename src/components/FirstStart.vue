@@ -19,9 +19,9 @@ import Button from 'primevue/button';
     <p class="text-center">{{ $t('first-start.first-step') }}</p>
     <RouterLink to="/create">
       <Button
-        :label="$t('general.create-vehicle')"
         icon="pi pi-car"
-        iconPos="right"
+        icon-pos="right"
+        :label="$t('general.create-vehicle')"
       />
     </RouterLink>
   </section>
