@@ -10,7 +10,9 @@ import { GMAPS_API_KEY } from '@/config';
 const props = defineProps<{
   viewMode?: boolean;
   coords?: PaircelPosition;
+  height?: string;
 }>();
+
 const emit = defineEmits<{
   change: [position: PaircelPosition];
 }>();
@@ -127,6 +129,6 @@ const setMarker = async (lat: number, lng: number): Promise<string | null> => {
     :class="{
       'h-[25rem]': !props.viewMode,
     }"
-    :style="{ height: '80vh' }"
+    :style="{ height: props.height }"
   />
 </template>

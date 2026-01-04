@@ -75,14 +75,14 @@ const savePosition = async () => {
     </template>
   </ConfirmDialog>
 
-  <Panel
-    class="mb-2"
-    :header="i18n.t('park.panel-title')"
-  >
+  <Panel :header="i18n.t('park.panel-title')">
     <VehicleSelector @update="vehicleChanged" />
   </Panel>
-  <ParkingSelectorMap @change="positionChanged" />
-  <div class="relative flex flex-col w-full items-center gap-6 m-2">
+  <ParkingSelectorMap
+    height="67vh"
+    @change="positionChanged"
+  />
+  <div class="relative flex flex-col items-center gap-6 m-2">
     <Button
       icon="pi pi-map-marker"
       class="w-6/12 h-12"
